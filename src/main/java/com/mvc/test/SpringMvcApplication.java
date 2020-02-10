@@ -1,5 +1,6 @@
 package com.mvc.test;
 
+import com.mvc.test.config.CustomImportBeanDefinitionRegistrar;
 import com.mvc.test.config.CustomSelector;
 import com.mvc.test.model.Shop;
 import org.springframework.boot.SpringApplication;
@@ -13,7 +14,7 @@ import org.springframework.context.annotation.Import;
  * @Import 注册组件 , 相当于@Bean
  */
 @SpringBootApplication
-@Import(value = {Shop.class, CustomSelector.class})
+@Import(value = {Shop.class, CustomSelector.class, CustomImportBeanDefinitionRegistrar.class})
 public class SpringMvcApplication {
 
     public static void main(String[] args) {
