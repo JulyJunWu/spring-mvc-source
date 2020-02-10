@@ -2,6 +2,7 @@ package com.mvc.test.config;
 
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.boot.autoconfigure.web.format.WebConversionService;
+import org.springframework.context.annotation.Conditional;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
@@ -16,6 +17,7 @@ import java.util.Objects;
  * @author JunWu
  */
 @Component
+@Conditional(value = ConverterConditional.class)
 public class ConverterConfig implements InitializingBean {
 
     @Resource(name = "mvcConversionService")
