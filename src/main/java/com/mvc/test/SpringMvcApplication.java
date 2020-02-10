@@ -5,6 +5,7 @@ import com.mvc.test.config.CustomSelector;
 import com.mvc.test.model.Shop;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Import;
 
 /**
@@ -18,6 +19,9 @@ import org.springframework.context.annotation.Import;
 public class SpringMvcApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringMvcApplication.class);
+        ConfigurableApplicationContext context = SpringApplication.run(SpringMvcApplication.class);
+
+        Shop bean = context.getBean(Shop.class);
+        bean.getPrice();
     }
 }
