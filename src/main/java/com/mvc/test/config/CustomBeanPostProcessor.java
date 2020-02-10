@@ -12,8 +12,12 @@ import javax.annotation.PostConstruct;
 
 /**
  * 自定义实现 BeanPostProcessor
+ * <p>
+ * 类似生命周期注解都是基于BeanPostProcessor接口实现的:
+ * 如: @Autowired  -> AutowiredAnnotationBeanPostProcessor
  *
  * @author JunWu
+ * @PostConstruct -> InitDestroyAnnotationBeanPostProcessor
  */
 @Component
 public class CustomBeanPostProcessor implements BeanPostProcessor, InitializingBean, DisposableBean, SmartInitializingSingleton {
@@ -38,14 +42,6 @@ public class CustomBeanPostProcessor implements BeanPostProcessor, InitializingB
         System.out.println(original);
     }
 
-    /**
-     * 拦截所有实例化后的bean(属性未开始注入之时)
-     *
-     * @param bean
-     * @param beanName
-     * @return
-     * @throws BeansException
-     */
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
         if (bean instanceof UserController) {
