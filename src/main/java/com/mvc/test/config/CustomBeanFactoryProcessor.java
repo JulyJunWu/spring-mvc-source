@@ -32,15 +32,15 @@ public class CustomBeanFactoryProcessor implements BeanFactoryPostProcessor, Ins
 
     /**
      * 注意事项::
-     *      只有当使用Qualifier注解 进行注入的时候 忽略自定装配裁生效
-     *      当使用 @Autowired 和 @Resource是无效的
+     *  忽略属性 只有在xml配置中设置default-autowire="byType"才会生效
+     *
      * @param configurableListableBeanFactory
      * @throws BeansException
      */
     @Override
     public void postProcessBeanFactory(ConfigurableListableBeanFactory configurableListableBeanFactory) throws BeansException {
         //忽略自动装配的类型
-        configurableListableBeanFactory.ignoreDependencyInterface(TestService.class);
+        // configurableListableBeanFactory.ignoreDependencyInterface(TestService.class);
         configurableListableBeanFactory.ignoreDependencyInterface(UserService.class);
         //configurableListableBeanFactory.ignoreDependencyType(TestService.class);
         //configurableListableBeanFactory.ignoreDependencyType(UserService.class);
