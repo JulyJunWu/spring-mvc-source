@@ -8,6 +8,7 @@ import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 /**
@@ -61,6 +62,7 @@ public class LogAspect {
     public Object around(ProceedingJoinPoint joinPoint) throws Throwable {
         Signature signature = null;
         long costTime = 0;
+        Throwable ex = null;
         try {
             long timeMillis = System.currentTimeMillis();
             signature = joinPoint.getSignature();
@@ -68,12 +70,16 @@ public class LogAspect {
             costTime = System.currentTimeMillis() - timeMillis;
             return proceed;
         } catch (Throwable e) {
+            ex = e;
             throw e;
         } finally {
             String methodName = signature.getName();
             String className = signature.getDeclaringType().getName();
             Object[] args = joinPoint.getArgs();
             log.info("请求{},消耗时间:{}ms,请求路径:{},参数:{}", costTime == 0 ? FAIL : SUCCESS, costTime, className + "." + methodName, args);
+            if (ex != null) {
+                log.error("{}", ex.getMessage());
+            }
         }
     }
 }
