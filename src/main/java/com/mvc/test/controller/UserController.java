@@ -2,8 +2,9 @@ package com.mvc.test.controller;
 
 import com.mvc.test.model.Shop;
 import com.mvc.test.model.User;
+import com.mvc.test.service.TestService;
 import com.mvc.test.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -17,8 +18,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/user")
 public class UserController {
 
-    @Autowired
+    //@Autowired
+    @Qualifier
     private UserService userService;
+
+    @Qualifier
+    private TestService testService;
 
     @ResponseBody
     @RequestMapping("/one")
