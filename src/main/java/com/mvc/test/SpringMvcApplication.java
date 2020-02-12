@@ -2,9 +2,7 @@ package com.mvc.test;
 
 import com.mvc.test.config.CustomImportBeanDefinitionRegistrar;
 import com.mvc.test.config.CustomSelector;
-import com.mvc.test.controller.UserController;
 import com.mvc.test.model.Shop;
-import org.springframework.aop.aspectj.annotation.AnnotationAwareAspectJAutoProxyCreator;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -20,12 +18,9 @@ import org.springframework.context.annotation.Import;
 @Import(value = {Shop.class, CustomSelector.class, CustomImportBeanDefinitionRegistrar.class})
 public class SpringMvcApplication {
 
-    public static void main(String[] args) {
-        ConfigurableApplicationContext context = SpringApplication.run(SpringMvcApplication.class);
-        UserController contextBean = context.getBean(UserController.class);
+    public static void main(String[] args) throws Exception {
+        ConfigurableApplicationContext run = SpringApplication.run(SpringMvcApplication.class, args);
 
-        Shop shop = contextBean.getShop();
-
-        System.exit(1);
+        run.publishEvent(new Object());
     }
 }

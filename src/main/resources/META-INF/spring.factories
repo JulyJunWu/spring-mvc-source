@@ -1,0 +1,5 @@
+org.springframework.context.ApplicationContextInitializer=com.mvc.test.config.CustomApplicationContextInitializer
+#观察者
+org.springframework.context.ApplicationListener=com.mvc.test.config.LoadListener
+#自定义starter
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.mvc.CustomStarter

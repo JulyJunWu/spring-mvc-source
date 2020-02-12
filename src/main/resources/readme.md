@@ -39,4 +39,9 @@ AOP:
                 3.1 执行定义的@Around的函数,并在函数中执行目标方法
                 3.2 执行目标方法时,重新进入CglibMethodInvocation.proceed(),执行invokeJoinpoint();
             最终拦截器3返回结果给拦截器2,拦截器2返回给拦截器1,最终结果返回
-     
+
+starter原理:
+    1.AutoConfigurationExcludeFilter
+    2.SpringFactoriesLoader
+    3.BeanDefinitionRegistryPostProcessor
+    4.spring.factories

@@ -1,6 +1,5 @@
 package com.mvc.test.config;
 
-import com.mvc.test.service.TestService;
 import com.mvc.test.service.UserService;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
@@ -32,7 +31,7 @@ public class CustomBeanFactoryProcessor implements BeanFactoryPostProcessor, Ins
 
     /**
      * 注意事项::
-     *  忽略属性 只有在xml配置中设置default-autowire="byType"才会生效
+     * 忽略属性 只有在xml配置中设置default-autowire="byType"才会生效
      *
      * @param configurableListableBeanFactory
      * @throws BeansException

@@ -67,6 +67,7 @@ public class LogAspect {
             signature = joinPoint.getSignature();
             Object proceed = joinPoint.proceed();
             costTime = System.currentTimeMillis() - timeMillis;
+            costTime = costTime <= 0 ? 1 : costTime;
             return proceed;
         } catch (Throwable e) {
             ex = e;
@@ -77,7 +78,7 @@ public class LogAspect {
             Object[] args = joinPoint.getArgs();
             log.info("请求{},消耗时间:{}ms,请求路径:{},参数:{}", costTime == 0 ? FAIL : SUCCESS, costTime, className + "." + methodName, args);
             if (ex != null) {
-                log.error("{}", ex.getMessage());
+                log.error("异常信息 : {}", ex.getMessage());
             }
         }
     }
